@@ -1,0 +1,92 @@
+TYPESCRIPT:
+
+ Cos'è, a cosa serve, cosa risolve e quali differrenze con JS ?
+
+- Linguaggio che deve essere compilato ed è costruito sul linguaggio JS.
+- A differenza di JS, TS non può esserere eseguito su browser o con node js e quindi necessita la sua conversione in file js.
+- Permette l'aGgiunta della tipizzazione di dato in modo più rapido e conciso, potendolo dichiarare direttamente sul parametro della CONST/LET.
+- Consente di evitare svariati errori a livello di scrittura di codice, qualora si dichiarassero variabili istanziate malamente(tipi di dato non attinenti).
+
+
+ Cosa fa il compilatore TS ?
+
+ - Il compilatore TS permette la conveersione del file ts in un file js, così da poter essere visualizzato.
+ - sostanzialmente JS è dinamico rispetto alla staticità di TS(ts da importanza al tipo di dato corretto).
+
+
+ Type inference?
+
+- Fa riferimento al tipo di dato legato alla variabile di appartenenza(valore di inizializzazione es. let x = 3), ovvero:
+
+    let type1 = 6   ---->  let type1: number (inference)
+    let type2 = "stringa casuale"     ---->  let type2: string (inference)
+    let type1 = true     ------>    let type3: boolean  (inference)
+
+
+ Tipo "any"?
+
+ - tipo non definito (più generico possibile) che si potrebbe aspettare ogni tipo di dato.
+ es:
+    const arrNew: any[string, boolean, number]
+    let esempio: any[]   -----> = [45,"come stai", true]
+        let prova: {
+            nome: any  ---> non usare perchè va usato in situazioni logicamente adeguate, tipo un array che ammette tipi diversi dentro.
+        } 
+
+ 
+ Tipo "tupla"?
+
+ - permette una lugnhezza fissa di tipi
+ es: 
+    const newTuple: [number, number] = [15,25]
+    const newTuple2: [string, number] = ["ciao" , 87] (collocati ordinati)
+
+
+ tipo "union"?
+
+ - tipo che unisce più tipi di dato , es:
+ es:
+    let exercise: string | number | boolean   ---> oppure --->  string | number | any[] = [22, 15,"Antonio"]
+
+
+
+Tipo "Custom type (ALIAS)" ?
+
+- permette la creazione di un dato "custom", fornendogli una struttura default di tipi ammissibili come per esempio nelle proprietà di un ogggetto.
+
+    type Persona = {
+        nome: string,
+        cognome: string,
+        età: number,
+        skills: [ string, string, string, string ] 
+    }
+
+
+Interfacce in TS? 
+
+- creazioni di un'interfaccia, concetto che differisce
+dalle custom type per quanto riguarda il concetto di estensione, cosa che 
+l'interfaccia permette l'aggiunta di funzionalità o struttura attraverso
+l'estensione della stessa richiamandola all'interno di un altro oggetto,
+ invece le ALIAS generano una nuova struttura senza però estenderne le funzioalità o proprietà. 
+
+ Quando usare interface o type?
+Usiamo interface quando desideri definire la struttura di oggetti o quando lavori con classi e hai bisogno di una dichiarazione che possa essere estesa o implementata.
+Usiamo type quando hai bisogno di maggiore flessibilità, come per unire tipi diversi (unioni), definire funzioni, o lavorare con tipi più complessi.
+In molti casi, la scelta tra interface e type dipende dalle necessità specifiche del tuo codice e dalle tue preferenze stilistiche.
+
+
+
+ i Generics ?
+
+- In TypeScript, i generics sono un meccanismo che permette di definire funzioni, classi o interfacce che operano su tipi variabili. Invece di specificare un tipo concreto, si usa un tipo parametrizzato che può essere determinato al momento dell'uso. Questo rende il codice più riutilizzabile e flessibile, consentendo di lavorare con vari tipi senza perdere la sicurezza dei tipi.
+
+Esempio generica:
+
+es:
+    function identita<T>(arg: T): T {
+  return arg;
+}
+
+const numero = identita(5); // T è inferito come 'number'
+const parola = identita("ciao"); // T è inferito come 'string'
